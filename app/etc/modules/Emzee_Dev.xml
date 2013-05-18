@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Emzee_Dev>
+            <active>true</version>
+            <codePool>community</codePool>
+        </Emzee_Dev>
+    </modules>
+</config>
