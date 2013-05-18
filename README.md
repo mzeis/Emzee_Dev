@@ -107,7 +107,7 @@ Uninstallation
 Changelog
 ---------
 
-See [Changelog](https://github.com/mzeis/Emzee_Dev/blog/master/CHANGELOG.md).
+See [Changelog](https://github.com/mzeis/Emzee_Dev/blob/master/CHANGELOG.md).
 
 Support
 -------
