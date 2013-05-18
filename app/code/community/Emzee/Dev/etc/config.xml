@@ -5,4 +5,17 @@
     		<version>0.0.1</version>
     	</Emzee_Dev>
     </modules>
+    
+    <global>
+        <helpers>
+            <emzee_dev>
+                <class>Emzee_Dev_Helper</class>
+            </emzee_dev>
+        </helpers>
+        <models>
+            <emzee_dev>
+                <class>Emzee_Dev_Model</class>
+            </emzee_dev>
+        </models>
+    </global>
 </config>
