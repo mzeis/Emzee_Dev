@@ -6,8 +6,6 @@
 class Emzee_Dev_Model_Debug
 {
     
-    static protected $_allowedIps = array();
-    
     /**
      * Calculates the hex color for the class. We fade from
      * red to green, so we have a maximum of 512 shades to play with
