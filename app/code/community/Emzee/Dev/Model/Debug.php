@@ -448,7 +448,7 @@ class Emzee_Dev_Model_Debug
      */
     static public function info($var, $label = '', $echo = false, $cssClass = '', $cssStyle = '')
     {
-        if (!self::isDev()) {
+        if (!Mage::helper('core')->isDevAllowed()) {
             return '';
         }
 
@@ -634,23 +634,6 @@ class Emzee_Dev_Model_Debug
     }
     
     /**
-     * Returns whether the request fulfills all conditions to show developer output.
-     *
-     * @return bool
-     */
-    static public function isDev()
-    {
-        // Return true for refactoring purposes as we would have to hardcode IP on _allowedIps at the moment.
-        return true;
-        
-        if (in_array(self::_getIp(), self::$_allowedIps)) {
-            return true;
-        }
-        
-        return false;
-    }
-    
-    /**
      * Sets a marker e.g. for benchmarks
      *
      * @param  string $identifier
@@ -686,6 +669,10 @@ class Emzee_Dev_Model_Debug
      */
     static public function memoryUsage($realUsage = false, $rawData = false)
     {
+        if (!Mage::helper('core')->isDevAllowed()) {
+            return '';
+        }
+        
         $size = memory_get_usage((bool)$realUsage);
         
         if ((bool)$rawData) {
@@ -698,6 +685,10 @@ class Emzee_Dev_Model_Debug
     
     static public function modelInfo()
     {
+        if (!Mage::helper('core')->isDevAllowed()) {
+            return '';
+        }
+        
         $config = Mage::getConfig()->getNode()->global->models->asArray();
         ksort($config);
         
