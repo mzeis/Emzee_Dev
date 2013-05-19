@@ -66,18 +66,10 @@ Here is a screenshot so you get a better picture:
 
 ![Emzee_Dev info() call](https://github.com/mzeis/Emzee_Dev/raw/master/app/code/community/Emzee/Dev/documentation/screenshot-info.png)
 
-### benchmark()
-
-Calculates the difference between two markers (see `mark()`).
-
 ### configInfo()
 
 * Prints the absolute pathes of various Magento folders.
 * Prints a list of all modules with status, code pool, dependencies and version.
-
-### mark()
-
-Sets markers (e.g. for benchmarks).
 
 ### memoryUsage()
 
