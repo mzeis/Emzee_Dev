@@ -8,8 +8,6 @@ class Emzee_Dev_Model_Debug
     
     static protected $_allowedIps = array();
     
-    static protected $_markers = array();
-    
     /**
      * Calculates the hex color for the class. We fade from
      * red to green, so we have a maximum of 512 shades to play with
@@ -275,36 +273,6 @@ class Emzee_Dev_Model_Debug
         });
         
         </script>";
-    }
-    
-    /**
-     * Returns the difference between two markers
-     *
-     * @param  string $from
-     * @param  string $to
-     * @return float
-     * @throws Exception
-     */
-    static public function benchmark($from, $to)
-    {
-        $from = strval($from);
-        $to   = strval($to);
-        
-        if (!array_key_exists($from, self::$_markers)) {
-            throw new Exception("Marker '$from' does not exist.");
-        }
-        
-        if (!array_key_exists($to, self::$_markers)) {
-            throw new Exception("Marker '$to' does not exist.");
-        }
-        
-        list($fromUsec, $fromSec) = explode(" ", self::$_markers[$from]['time']);
-        $fromTime = (float)$fromUsec + (float)$fromSec;
-        
-        list($toUsec, $toSec) = explode(" ", self::$_markers[$to]['time']);
-        $toTime = (float)$toUsec + (float)$toSec;
-        
-        return $toTime - $fromTime;
     }
     
     /**
@@ -631,33 +599,6 @@ class Emzee_Dev_Model_Debug
             return;
         }
         return $result;
-    }
-    
-    /**
-     * Sets a marker e.g. for benchmarks
-     *
-     * @param  string $identifier
-     * @return string identifier and point in time
-     * @throws Exception
-     */
-    static public function mark($identifier)
-    {
-        $time = microtime();
-        $id   = strval($identifier);
-        
-        if (array_key_exists($id, self::$_markers)) {
-            throw new Exception("Marker '$id' already exists.");
-        }
-        
-        self::$_markers[$id] = array(
-            'index' => count(self::$_markers),
-            'id'    => $id,
-            'time'  => $time
-        );
-        
-        list($usec, $sec) = explode(" ", microtime());
-        
-        return $id . ': ' . ((float)$usec + (float)$sec);
     }
     
     /**
