@@ -27,8 +27,8 @@ That's why I invested two minutes to turn my temporary static Emzee_Debug class
 into a Magento extension called Emzee_Debug.
 
 It was meant as (and was) a class you can throw in anywhere and use it without
-making a big fuss about it. So don't be surprised if you find some static methods
-or code that is also covered by Magento methods. I may clean that up.
+making a big fuss about it. Code doesn't follow all best practices. I may clean
+that up.
 
 Usage
 -----
@@ -38,7 +38,7 @@ I'll list them here for the sake of completeness.
 
 ### info()
 
-The mose useful function is `info()`. It can be called in different ways:
+The most useful function is `info()`. You can call it using the model or the helper:
 
     # using a singleton model
     echo Mage::getSingleton('emzee_dev/debug')->info($this);
@@ -46,9 +46,6 @@ The mose useful function is `info()`. It can be called in different ways:
     # using a helper
     echo Mage::helper('emzee_dev')->info($this);
     
-    # using the class directly (bad practice - boo!)
-    echo Emzee_Dev_Model_Debug::info($this);
-   
 `info()` is intended to be used with objects. Providing info() with other types will
 get you a simple `print_r()` output.
 

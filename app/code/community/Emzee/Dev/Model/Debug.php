@@ -15,7 +15,7 @@ class Emzee_Dev_Model_Debug
      * @param  int $index
      * @return string
      */
-    static protected function _getColorHex($shades, $index)
+    protected function _getColorHex($shades, $index)
     {
         $shades = (int)$shades;
         $index  = (int)$index;
@@ -55,7 +55,7 @@ class Emzee_Dev_Model_Debug
      * @param  string $id Identifier for the container
      * @return string
      */
-    static protected function _getCssCode($id)
+    protected function _getCssCode($id)
     {
         return "<style type='text/css'>
         .emzee-dev-debug-container {
@@ -169,7 +169,7 @@ class Emzee_Dev_Model_Debug
      *
      * @return string
      */
-    static protected function _getIp()
+    protected function _getIp()
     {
 
         if (isset($_SERVER)) {
@@ -202,7 +202,7 @@ class Emzee_Dev_Model_Debug
      *                       that should be included 
      * @return string
      */
-    static protected function _getExcerptHtml($file, $line, $range = 2)
+    protected function _getExcerptHtml($file, $line, $range = 2)
     { 
         if ($line < 1) {
             return '';
@@ -247,7 +247,7 @@ class Emzee_Dev_Model_Debug
      * @param  string $id Identifier for the container
      * @return string
      */
-    static protected function _getJsCode($id)
+    protected function _getJsCode($id)
     {
         return "<script type='text/javascript'>
         new Draggable('$id', {'handle': 'handle', 'starteffect': '', 'endeffect': ''});
@@ -274,9 +274,33 @@ class Emzee_Dev_Model_Debug
     }
     
     /**
+     * Normalises the string (transforms special characters etc.).
+     *
+     * @param  string $string
+     * @return string
+     */
+    protected function _normalise($string)
+    {
+        $searchReplace = array(
+          '.' => '-',
+          '_' => '-',
+          ' ' => '-',
+          'ä' => 'ae',
+          'ö' => 'oe',
+          'ü' => 'ue',
+          'ß' => 'sz'
+        );
+        
+        $result = strtolower((string)$string);
+        $result = str_replace(array_keys($searchReplace), array_values($searchReplace), $result);
+        
+        return $result;
+    }
+    
+    /**
      * Prints information that can be gathered from the Magento configuration.
      */
-    static public function configInfo()
+    public function configInfo()
     {
         $html = '';
         
@@ -412,13 +436,13 @@ class Emzee_Dev_Model_Debug
      * @param  string $cssStyle CSS-Styles
      * @return string
      */
-    static public function info($var, $label = '', $echo = false, $cssClass = '', $cssStyle = '')
+    public function info($var, $label = '', $echo = false, $cssClass = '', $cssStyle = '')
     {
         if (!Mage::helper('core')->isDevAllowed()) {
             return '';
         }
 
-        $id = 'debug-info-' . self::normalise(microtime());
+        $id = 'debug-info-' . $this->_normalise(microtime());
         $result = '';
         
         // Normal print_r for non-objects.
@@ -469,7 +493,7 @@ class Emzee_Dev_Model_Debug
         $i = 0;
         if (count($hierarchy) > 0) {
             foreach ($hierarchy as $parent) {
-                $color = self::_getColorHex(count($hierarchy), $i);
+                $color = $this->_getColorHex(count($hierarchy), $i);
                 $result .= "<ul class='hierarchy'><li><strong class='class-color' style='border-color:$color'>{$parent['name']}</strong><br/>Pfad: {$parent['file']}";
                 $classes[$parent['name']]['color'] = $color;
                 $i++;
@@ -566,7 +590,7 @@ class Emzee_Dev_Model_Debug
              
             // File-Excerpt lesen
             if (isset($dbgLine['file'])) {
-                $excerpt = self::_getExcerptHtml($dbgLine['file'], $dbgLine['line'], 3);    
+                $excerpt = $this->_getExcerptHtml($dbgLine['file'], $dbgLine['line'], 3);    
             } else {
                 $excerpt = '<p>Keine Datei vorhanden</p>';
             }
@@ -586,9 +610,9 @@ class Emzee_Dev_Model_Debug
         
         $result .= '</div>'; // closes div#emzee-dev-debug-container-content
         
-        $result .= self::_getCssCode($id);
+        $result .= $this->_getCssCode($id);
         
-        $result .= self::_getJsCode($id);
+        $result .= $this->_getJsCode($id);
         
         $result = "<div id='$id' class='emzee-dev-debug-container' style='border: 1px solid #ddd;'>$result</div>";
         
@@ -606,7 +630,7 @@ class Emzee_Dev_Model_Debug
      * @param  boolean $rawData Returns the size without "beautified" size (and as integer) 
      * @return string|int
      */
-    static public function memoryUsage($realUsage = false, $rawData = false)
+    public function memoryUsage($realUsage = false, $rawData = false)
     {
         if (!Mage::helper('core')->isDevAllowed()) {
             return '';
@@ -622,7 +646,7 @@ class Emzee_Dev_Model_Debug
         return @round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i];
     }
     
-    static public function modelInfo()
+    public function modelInfo()
     {
         if (!Mage::helper('core')->isDevAllowed()) {
             return '';
@@ -704,33 +728,9 @@ class Emzee_Dev_Model_Debug
         
         /*
         if (!empty($config)) {
-            self::info($config, '', true, '', 'text-align:left;');  // @todo delete: only used for finding all informations to show
+            $this->info($config, '', true, '', 'text-align:left;');  // @todo delete: only used for finding all informations to show
         }
         */
         
-    }
-    
-    /**
-     * Normalises the string (transforms special characters etc.).
-     *
-     * @param  string $string
-     * @return string
-     */
-    static public function normalise($string)
-    {
-        $searchReplace = array(
-          '.' => '-',
-          '_' => '-',
-          ' ' => '-',
-          'ä' => 'ae',
-          'ö' => 'oe',
-          'ü' => 'ue',
-          'ß' => 'sz'
-        );
-        
-        $result = strtolower((string)$string);
-        $result = str_replace(array_keys($searchReplace), array_values($searchReplace), $result);
-        
-        return $result;
     }
 }
