@@ -19,7 +19,7 @@ class Emzee_Dev_Block_Info_Backtrace extends Mage_Core_Block_Template
     protected function _getExcerptHtml($file, $line)
     {
         if ($file == '') {
-            return '<p>Keine Datei vorhanden</p>';
+            return '<p>' . $this->__('File not exists') .'</p>';
         }
          
         if ($line < 1) {

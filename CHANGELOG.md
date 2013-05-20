@@ -7,6 +7,7 @@ Changelog
 * Closed #2 - Remove mark / benchmark functionality
 * Closed #3 - Remove static methods
 * Closed #4 - Move view code to view layer
+* Closed #5 - Make extension translatable
 
 0.0.1 (18.05.2013)
 -----

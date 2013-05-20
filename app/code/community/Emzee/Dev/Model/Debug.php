@@ -16,30 +16,30 @@ class Emzee_Dev_Model_Debug
         $config = Mage::getConfig();
         $options = $config->getOptions();
         
-        $html .= '<h2>Verzeichnisse</h2>';
-        $html .= '<p>Basis-Verzeichnis: ' . $options->getBaseDir() . '</p>'; 
-        $html .= '<p>App-Verzeichnis: ' . $options->getAppDir() . '</p>'; 
-        $html .= '<p>Code-Verzeichnis: ' . $options->getCodeDir() . '</p>'; 
-        $html .= '<p>Design-Verzeichnis: ' . $options->getDesignDir() . '</p>'; 
-        $html .= '<p>etc-Verzeichnis: ' . $options->getEtcDir() . '</p>'; 
-        $html .= '<p>lib-Verzeichnis: ' . $options->getLibDir() . '</p>';
-        $html .= '<p>local-Verzeichnis: ' . $options->getLocaleDir() . '</p>';
-        $html .= '<p>media-Verzeichnis: ' . $options->getMediaDir() . '</p>';
-        $html .= '<p>skin-Verzeichnis: ' . $options->getSkinDir() . '</p>';
-        $html .= '<p>Temporäres System-Verzeichnis: ' . $options->getSysTmpDir(). '</p>';
+        $html .= '<h2>' . Mage::helper('emzee_dev')->__('Directories') . '</h2>';
+        $html .= '<p>' . Mage::helper('emzee_dev')->__('Base directory') . ': ' . $options->getBaseDir() . '</p>'; 
+        $html .= '<p>' . Mage::helper('emzee_dev')->__('App directory') . ': ' . $options->getAppDir() . '</p>'; 
+        $html .= '<p>' . Mage::helper('emzee_dev')->__('Code directory') . ': ' . $options->getCodeDir() . '</p>'; 
+        $html .= '<p>' . Mage::helper('emzee_dev')->__('Design directory') . ': ' . $options->getDesignDir() . '</p>'; 
+        $html .= '<p>' . Mage::helper('emzee_dev')->__('Configuration directory') . ': ' . $options->getEtcDir() . '</p>'; 
+        $html .= '<p>' . Mage::helper('emzee_dev')->__('Library directory') . ': ' . $options->getLibDir() . '</p>';
+        $html .= '<p>' . Mage::helper('emzee_dev')->__('Locale directory') . ': ' . $options->getLocaleDir() . '</p>';
+        $html .= '<p>' . Mage::helper('emzee_dev')->__('Media directory') . ': ' . $options->getMediaDir() . '</p>';
+        $html .= '<p>' . Mage::helper('emzee_dev')->__('Skin directory') . ': ' . $options->getSkinDir() . '</p>';
+        $html .= '<p>' . Mage::helper('emzee_dev')->__('Temporary system directory') . ': ' . $options->getSysTmpDir(). '</p>';
         
-        $html .= "<h2>Module</h2>";
-        $html .= "<table>
+        $html .= '<h2>' . Mage::helper('emzee_dev')->__('Modules') . '</h2>';
+        $html .= '<table>
                     <thead>
                        <tr>
-                          <th>Modul</th>
-                          <th>Status</th>
-                          <th>Pool</th>
-                          <th>Abhängigkeiten</th>
-                          <th>Version</th>
+                          <th>' . Mage::helper('emzee_dev')->__('Module') . '</th>
+                          <th>' . Mage::helper('emzee_dev')->__('Status') . '</th>
+                          <th>' . Mage::helper('emzee_dev')->__('Code pool') . '</th>
+                          <th>' . Mage::helper('emzee_dev')->__('Dependencies') . '</th>
+                          <th>' . Mage::helper('emzee_dev')->__('Version') . '</th>
                        </tr>
                     </thead>
-                    <tbody>";
+                    <tbody>';
         $modules = $config->getModuleConfig();
         
         $moduleStatusClassActive = "active";
@@ -47,7 +47,7 @@ class Emzee_Dev_Model_Debug
         foreach ($modules->asCanonicalArray() as $moduleName => $information) {
             $html .= "<tr class='" . ($information['active'] == 'true' ? $moduleStatusClassActive : $moduleStatusClassInactive) . "'>";
             $html .= "<td>$moduleName</td>
-                      <td>" . ($information['active'] == 'true' ? 'Aktiv' : 'Inaktiv')  .  "</td>
+                      <td>" . ($information['active'] == 'true' ? Mage::helper('emzee_dev')->__('active') : Mage::helper('emzee_dev')->__('inactive'))  .  "</td>
                       <td class='{$information['codePool']}'>{$information['codePool']}</td>
                       <td>" . ((array_key_exists('depends', $information) && is_array($information['depends'])) ? implode(', ', array_keys($information['depends'])) : '&nbsp;') . "</td>
                       <td>{$information['version']}</td>";
@@ -242,21 +242,21 @@ class Emzee_Dev_Model_Debug
         
         foreach ($config as $group => &$groupData) {
             $html .= '<li id="group-' . $group . '">';
-            $html .= "<strong>$group</strong>:<br>Zu finden in: " . $groupData['class'];
+            $html .= "<strong>$group</strong>:<br>" . Mage::helper('emzee_dev')->__('To be found in') . ": " . $groupData['class'];
             unset($groupData['class']); // @todo delete: only used for finding all informations to show
             
             if (array_key_exists('resourceModel', $groupData)) {
-                $html .= "<br>Resource model: ";
+                $html .= "<br>" . Mage::helper('emzee_dev')->__('Resource model') . ": ";
                 if (in_array($groupData['resourceModel'], $groups)) {
                     $html .= "<a href='#group-{$groupData['resourceModel']}'>{$groupData['resourceModel']}</a>";
                 } else {
-                    $html .= "<span class='error'>Fehler: Gruppe '{$groupData['resourceModel']}' erwartet, aber nicht definiert</span>";
+                    $html .= "<span class='error'>" . Mage::helper('emzee_dev')->__("Error: Group '%s' expected, but not defined", $groupData['resourceModel']) . "</span>";
                 }
                 unset($groupData['resourceModel']); // @todo delete: only used for finding all informations to show
             }
             
             if (array_key_exists('entities', $groupData)) {
-                $html .= "<br>Entitäten: ";
+                $html .= "<br>" . Mage::helper('emzee_dev')->__('Entities') . ": ";
                 $entities = array();
                 foreach ($groupData['entities'] as $entityName => &$entityData) {
                     if (array_key_exists('table', $entityData)) {

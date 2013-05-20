@@ -13,16 +13,16 @@
 $_id = $this->getHtmlId();
 ?>
 <div id='<?php echo $_id; ?>' class='emzee-dev-debug-container'>
-  <h1 class='handle'>Debug variable<span id='emzee-dev-debug-main-toggle' class='expandable'>Toggle</span></h1>
+  <h1 class='handle'><?php echo $this->__('Debug variable'); ?><span id='emzee-dev-debug-main-toggle' class='expandable'><?php echo $this->__('Toggle'); ?></span></h1>
   <div id='emzee-dev-debug-container-content'>
     <?php if ($label): ?>
     <div style='font-weight:bold;'><?php echo $label; ?></div>
     <?php endif; ?>
 
-    <h2>Type</h2>
+    <h2><?php echo $this->__('Type'); ?></h2>
     <p><?php echo gettype($variable); ?></p>
 
-    <h2>Content</h2>
+    <h2><?php echo $this->__('Content'); ?></h2>
     <pre>
     <?php print_r($variable); ?>
     </pre>

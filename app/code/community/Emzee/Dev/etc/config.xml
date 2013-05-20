@@ -6,6 +6,17 @@
     	</Emzee_Dev>
     </modules>
     
+    <frontend>
+        <translate>
+            <modules>
+                <Emzee_Dev>
+                    <files>
+                        <default>Emzee_Dev/Emzee_Dev.csv</default>
+                    </files>
+                </Emzee_Dev>
+            </modules>
+        </translate>
+    </frontend>
     <global>
         <blocks>
             <emzee_dev>

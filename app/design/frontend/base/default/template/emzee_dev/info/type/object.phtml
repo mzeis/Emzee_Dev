@@ -13,7 +13,7 @@
 $_id = $this->getHtmlId();
 ?>
 <div id='<?php echo $_id; ?>' class='emzee-dev-debug-container'>
-  <h1 class='handle'><?php echo $variable->getReflectionClass()->getName(); ?><span id='emzee-dev-debug-main-toggle' class='expandable'>Toggle</span></h1>
+  <h1 class='handle'><?php echo $variable->getReflectionClass()->getName(); ?><span id='emzee-dev-debug-main-toggle' class='expandable'><?php echo $this->__('Toggle'); ?></span></h1>
   <div id='emzee-dev-debug-container-content'>
     <?php if ($label): ?>
     <div style='font-weight:bold;'><?php echo $label; ?></div>

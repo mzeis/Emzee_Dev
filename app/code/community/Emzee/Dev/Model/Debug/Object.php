@@ -29,7 +29,7 @@ class Emzee_Dev_Model_Debug_Object
         $index  = (int)$index;
         
         if ($index > $shades) {
-            throw new Exception('Index must not be higher than count of shades.');
+            throw new Exception(Mage::helper('emzee_dev')->__("Index must not be higher than count of shades."));
         }
         
         // special case: with one shade, we return the value for green immediately
