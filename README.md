@@ -4,7 +4,7 @@ Provides a handy object inspection method for Magento developers.
 
 Facts
 -----
-- version: 0.0.1
+- version: 0.1.0
 - extension key: Emzee_Dev
 - [extension on GitHub](https://github.com/mzeis/Emzee_Dev)
 
@@ -24,11 +24,8 @@ I can publish it, I have to clean it up. The code is messy." is my usual answer.
 Well, you can't always sit on your code. Especially when you want to get it out
 there but don't manage to rewrite that few lines of code in nearly three years.
 That's why I invested two minutes to turn my temporary static Emzee_Debug class
-into a Magento extension called Emzee_Debug.
-
-It was meant as (and was) a class you can throw in anywhere and use it without
-making a big fuss about it. Code doesn't follow all best practices. I may clean
-that up.
+into a Magento extension called Emzee_Debug. With a little luck, it may become
+a proper Magento extension.
 
 Usage
 -----
@@ -41,10 +38,10 @@ I'll list them here for the sake of completeness.
 The most useful function is `info()`. You can call it using the model or the helper:
 
     # using a singleton model
-    echo Mage::getSingleton('emzee_dev/debug')->info($this);
+    echo Mage::getSingleton('emzee_dev/debug')->info($variable);
     
     # using a helper
-    echo Mage::helper('emzee_dev')->info($this);
+    echo Mage::helper('emzee_dev')->info($variable);
     
 `info()` is intended to be used with objects. Providing info() with other types will
 get you a simple `print_r()` output.
