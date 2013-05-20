@@ -8,6 +8,7 @@ Changelog
 * Closed #3 - Remove static methods
 * Closed #4 - Move view code to view layer
 * Closed #5 - Make extension translatable
+* Closed #6 - Make installable via Composer
 
 0.0.1 (18.05.2013)
 -----
