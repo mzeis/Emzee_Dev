@@ -1,0 +1,16 @@
+<?php
+/*
+ * Special information if this is a block class.
+ */
+if ($variable->isBlockClass()): ?>
+    <h2 class='expandable' id='children-header'>Child-Blöcke</h2>
+    <ul id='children-list' class='child-blocks'>
+    <?php if ($variable->getVariable()->getParentBlock()): ?>
+      <li><strong>Übergeordneter Block</strong>: <?php echo $variable->getVariable()->getParentBlock()->getNameInLayout(); ?> (alias <?php echo $variable->getVariable()->getParentBlock()->getBlockAlias(); ?>)</li> 
+    <?php endif; ?>
+    
+    <?php foreach ($variable->getVariable()->getChild() as $child): ?>
+        <li>Name: <?php echo $child->getNameInLayout(); ?> (alias <?php echo $child->getBlockAlias(); ?>)</li>
+    <?php endforeach; ?>
+    </ul> 
+<?php endif; ?>

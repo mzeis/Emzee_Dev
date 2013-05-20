@@ -1,0 +1,41 @@
+<?php
+/**
+ * @var $this Emzee_Dev_Block_Info_ClassHierarchy
+ */
+?>
+<h2 id='hierarchy-header' class='expandable'>Klassenhierarchie</h2>
+<div id='hierarchy-list'>
+    <?php
+    $i = 0;
+    $classes = array();
+
+    foreach ($variable->getClassHierarchy() as $level): ?>
+    <ul class='hierarchy'>
+      <li>
+        <strong class='class-color' style='border-color:<?php echo $level['color']; ?>'><?php echo $level['name']; ?></strong><br>
+        Pfad: <?php echo $level['file']; ?>
+        <?php
+        $classes[$level['name']]['color'] = $level['color'];
+        $i++;
+    endforeach;
+
+    for (; $i > 0; $i--): ?>
+      </li>
+    </ul>
+   <?php endfor; ?>
+</div>
+
+<?php if ($variable->hasPublicMethods()): ?>
+<h2 id='methods-header' class='expandable'>Öffentliche Methoden</h2>
+<ul id='methods-list' class='methods'>
+<?php foreach ($variable->getPublicMethods() as $method): ?>
+  <li>
+    <strong onclick="$('<?php echo $method->getName(); ?>-additional').toggle();" class='class-color expandable' style='border-color: <?php echo $classes[$method->getDeclaringClass()->getName()]['color']; ?>' title='<?php echo $method->getDeclaringClass()->getName(); ?>'><?php echo $method->getName(); ?></strong>
+    <p id='<?php echo $method->getName(); ?>-additional' style='display:none; margin:0;'>
+      Deklariert in: <?php echo $method->getDeclaringClass()->getName(); ?><br>
+      Aufruf: <?php echo $method->getName(); ?>(<?php echo $this->getMethodParameterString($method); ?>)
+    </p>
+  </li>
+<?php endforeach; ?>
+</ul>
+<?php endif; ?>

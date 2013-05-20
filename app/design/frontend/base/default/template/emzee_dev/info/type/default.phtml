@@ -1,0 +1,36 @@
+<?php
+/**
+ * @var $this Emzee_Dev_Block_Info
+ */
+?>
+<?php
+/**
+ * @var $label string Label
+ * @var $variable Emzee_Dev_Model_Debug_Object Variable to debug
+ */
+?>
+<?php
+$_id = $this->getHtmlId();
+?>
+<div id='<?php echo $_id; ?>' class='emzee-dev-debug-container'>
+  <h1 class='handle'>Debug variable<span id='emzee-dev-debug-main-toggle' class='expandable'>Toggle</span></h1>
+  <div id='emzee-dev-debug-container-content'>
+    <?php if ($label): ?>
+    <div style='font-weight:bold;'><?php echo $label; ?></div>
+    <?php endif; ?>
+
+    <h2>Type</h2>
+    <p><?php echo gettype($variable); ?></p>
+
+    <h2>Content</h2>
+    <pre>
+    <?php print_r($variable); ?>
+    </pre>
+    <?php echo $this->getChildHtml('backtrace'); ?>
+
+  </div>
+
+<?php echo $this->_getCssCode($_id); ?>
+<?php echo $this->_getJsCode($_id); ?>
+
+</div>

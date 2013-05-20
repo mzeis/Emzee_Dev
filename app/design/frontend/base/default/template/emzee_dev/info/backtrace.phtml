@@ -1,0 +1,49 @@
+<?php
+/**
+ * @var $this Emzee_Dev_Block_Info_Additional_Backtrace
+ */
+?>
+<h2 class='expandable' id='backtrace-header'>Backtrace</h2>
+<table id='backtrace-list' class='backtrace'>
+  <thead>
+    <tr>    
+      <th class='index'>#</th>
+      <th>Datei (Hover für absoluten Pfad)</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php foreach ($backtrace as $_index => $_line):
+
+    if (!isset($_line['file'])) {
+        $_line['file'] = '';
+    }
+    ?>
+    
+    <tr>
+       <td class='index'><?php echo $_index; ?></td>
+       <td class='backtrace-info'>
+           <div class='filename' title='<?php echo $_line['file']; ?>'><?php echo str_replace(Mage::getBaseDir(), '', $_line['file']) . ": " . $_line['line']; ?></div>
+           <?php echo $this->_getExcerptHtml($_line['file'], $_line['line']); ?>
+           <div>
+             <?php if (isset($_line['type']) && ($_line['type'] == '->' || $_line['type'] == '::')): ?>
+             <?php echo $_line['class'] . $_line['type'] . $_line['function']; ?>()<br>
+             <?php else: ?>
+             <?php echo $_line['function'];?>()<br>
+             <?php endif; ?>
+           </div>
+           
+           <?php if (isset($_line['args']) && count($_line['args']) > 0): ?>
+             Argumente:
+             <ul>
+             <?php foreach ($_line['args'] as $_lineArgKey => $_lineArgVal): ?>
+               <li><?php echo $_lineArgKey; ?>: <?php echo gettype($_lineArgVal) == 'string' ? '"' . $_lineArgVal . '"' : gettype($_lineArgVal); ?></li>
+             <?php endforeach; ?>
+             </ul>
+           <?php endif; ?>
+       </td>
+    </tr>  
+
+  <?php endforeach; ?>
+
+  </tbody>
+</table>

@@ -7,6 +7,11 @@
     </modules>
     
     <global>
+        <blocks>
+            <emzee_dev>
+                <class>Emzee_Dev_Block</class>
+            </emzee_dev>
+        </blocks>
         <helpers>
             <emzee_dev>
                 <class>Emzee_Dev_Helper</class>
