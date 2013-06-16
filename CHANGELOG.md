@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.1.1 (16.06.2013)
+-----
+* Closed #7 - call to info() doesn't work inside upgrade script
+
 0.1.0 (20.05.2013)
 -----
 * Closed #1 - Use Developer Client Restriction IPs for check

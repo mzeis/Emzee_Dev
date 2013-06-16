@@ -4,7 +4,7 @@ Provides a handy object inspection method for Magento developers.
 
 Facts
 -----
-- version: 0.1.0
+- version: 0.1.1
 - extension key: Emzee_Dev
 - [extension on GitHub](https://github.com/mzeis/Emzee_Dev)
 
