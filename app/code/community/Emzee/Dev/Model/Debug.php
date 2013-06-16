@@ -5,7 +5,6 @@
  */
 class Emzee_Dev_Model_Debug
 {
-    
     /**
      * Prints information that can be gathered from the Magento configuration.
      */
@@ -156,6 +155,9 @@ class Emzee_Dev_Model_Debug
                 $template = 'emzee_dev/info/type/default.phtml'; 
         }
         
+        $symlinkFix = Mage::getModel('emzee_dev/symlinkFix');
+        $symlinkFix->enableSymlinksForTemplates();
+        
         $block = Mage::app()->getLayout()->createBlock('emzee_dev/info')
             ->setTemplate($template)
             ->assign('label', $label)
@@ -180,7 +182,11 @@ class Emzee_Dev_Model_Debug
         $block->append($blockClass, 'blockClass');
         $block->append($backtrace, 'backtrace');
         
-        return $block->toHtml();                               
+        $html = $block->toHtml();
+        
+        $symlinkFix->disableSymlinksForTemplates();
+        
+        return $html;                               
     }
     
     /**
