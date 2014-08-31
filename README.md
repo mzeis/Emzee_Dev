@@ -4,28 +4,9 @@ Provides a handy object inspection method for Magento developers.
 
 Facts
 -----
-- version: 0.1.1
+- version: 1.0.0
 - extension key: Emzee_Dev
 - [extension on GitHub](https://github.com/mzeis/Emzee_Dev)
-
-Prolog
-------
-In the mid of 2010, in my very first days of Magento development, I needed a
-tool to inspect those monstrous Magento objects. All the nice extensions,
-PhpStorm integrations and the like were quite a few moons away, so I sat down
-for a few hours and wrote a small class called Emzee_Dev.
-
-Fast-forward 3 years. It's May 2013 and I'm still using my precious little
-helper. Although many great tools exist by now, it seems there still is a place
-for Emzee_Dev. When people see me inspecting the output of my `info()` method
-they ask where they can get that extension. "I can give it to you, but before
-I can publish it, I have to clean it up. The code is messy." is my usual answer.
-
-Well, you can't always sit on your code. Especially when you want to get it out
-there but don't manage to rewrite that few lines of code in nearly three years.
-That's why I invested two minutes to turn my temporary static Emzee_Debug class
-into a Magento extension called Emzee_Debug. With a little luck, it may become
-a proper Magento extension.
 
 Usage
 -----
@@ -80,11 +61,13 @@ Returns information on models:
 
 Compatibility
 -------------
-- Magento 1.7 CE (only tested here; initial version worked with 1.3 CE, so you may try it with older versions)
+- Magento CE 1.7 - 1.9 (only tested here; initial version worked with 1.3 CE, so you may try it with older versions)
 
 Installation Instructions
 -------------------------
-1. Install the extension using modman or copy all the files into your document root.
+1. Install the extension using [modman](https://github.com/colinmollenhour/modman) or copy all the files into your
+   document root. If you copy the files yourself copy `app/design/frontend/base/default/template/emzee_dev/` to
+   `app/design/adminhtml/default/default/template/emzee_dev/` manually.
 
 Uninstallation
 --------------
@@ -115,4 +98,4 @@ Licence
 
 Copyright
 ---------
-(c) 2013 Matthias Zeis
+(c) 2014 Matthias Zeis

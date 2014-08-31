@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.0.0 (31.08.2014)
+-----
+* Added modman symlink so Emzee_Dev can be used in backend too
+
 0.1.1 (16.06.2013)
 -----
 * Closed #7 - call to info() doesn't work inside upgrade script

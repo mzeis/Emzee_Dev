@@ -1,4 +1,5 @@
 app/code/community/Emzee/Dev/ app/code/community/Emzee/Dev/
+app/design/frontend/base/default/template/emzee_dev/ app/design/adminhtml/default/default/template/emzee_dev/
 app/design/frontend/base/default/template/emzee_dev/ app/design/frontend/base/default/template/emzee_dev/
 app/etc/modules/Emzee_Dev.xml app/etc/modules/Emzee_Dev.xml
 app/locale/de_DE/Emzee_Dev/ app/locale/de_DE/Emzee_Dev/

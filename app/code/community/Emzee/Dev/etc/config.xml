@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <modules>
-    	<Emzee_Dev>
-    		<version>0.1.1</version>
-    	</Emzee_Dev>
+        <Emzee_Dev>
+            <version>1.0.0</version>
+        </Emzee_Dev>
     </modules>
     
     <frontend>
